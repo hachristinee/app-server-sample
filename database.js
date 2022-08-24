@@ -1,4 +1,5 @@
 const Pool = require('pg').Pool
+const dotenv = require('dotenv').config()
 
 const pool = new Pool({
   user: process.env.DB_USER,
@@ -11,6 +12,7 @@ const pool = new Pool({
 const getProducts = (request, response) => {
   pool.query('SELECT * FROM PRODUCTS ORDER BY id ASC', (error, results) => {
     if (error) {
+      console.log(error,results)
       throw error
     }
     response.status(200).json(results.rows)
