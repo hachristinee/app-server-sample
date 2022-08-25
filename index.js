@@ -14,7 +14,7 @@ app.use(
 
 app.get('/', (request, response) => {
   response.json({ info: 'Node.js, Express, and Postgres API' })
-})
+  console.log('Visited / home page')})
 
 app.get('/products', db.getProducts)
 app.post('/createproduct', db.createProduct)

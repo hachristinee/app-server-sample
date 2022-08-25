@@ -10,7 +10,8 @@ const pool = new Pool({
 })
 
 const getProducts = (request, response) => {
-  pool.query('SELECT * FROM PRODUCTS ORDER BY id ASC', (error, results) => {
+  console.log('Attempting to /GET products')
+  pool.query('SELECT * FROM PRODUCTS ORDER BY id ASC LIMIT 3', (error, results) => {
     if (error) {
       console.log(error,results)
       throw error
@@ -25,7 +26,8 @@ const createProduct = (request, response) => {
     if (error) {
       throw error
     }
-    response.status(201).send(`Product added with ID: ${results.rows[0].id}`)
+    console.log('Successfully Added products with ID & NAME ', id, ':', name)
+    response.status(201).send(`Product successfully added with ID: ${results.rows[0].id}`)
   })
 }
 
